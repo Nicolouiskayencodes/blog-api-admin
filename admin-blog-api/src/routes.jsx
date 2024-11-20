@@ -10,6 +10,10 @@ const routes = [
   {
     path: "/:page",
     element: <App />,
+  }, 
+  {
+  path: "/:page/:postId",
+  element: <App />
   },
 ];
 

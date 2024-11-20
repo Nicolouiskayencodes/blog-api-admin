@@ -109,12 +109,14 @@ export default function Posts({posts, reload, user}) {
           {(!post.published) ?(
             <>
               <button onClick={()=>publish(post.id)} >Publish</button>
+              <button onClick={()=>navigate(`/updatePost/${post.id}`)} >Update</button>
               <button onClick={()=>remove(post.id)} >Delete</button>
             </>
             
           ): (
             <>
               <p>Published ✔</p>
+              <button onClick={()=>navigate(`/updatePost/${post.id}`)} >Update</button>
               <button onClick={()=>remove(post.id)} >Delete</button>
             </>
           )}

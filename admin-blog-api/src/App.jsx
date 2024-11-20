@@ -8,18 +8,20 @@ import User from './components/user.jsx'
 import Posts from './components/posts.jsx'
 import Admin from './components/admin.jsx'
 import Post from './components/postForm.jsx'
+import Update from './components/update.jsx'
 
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  const {page} = useParams()
+  const {page, postId} = useParams()
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState(null);
   const [user, setUser] = useState(null);
   const [reload, setReload] = useState(false)
 
   console.log(posts)
+  console.log(postId)
   function assignUser(userObj) {
     setUser(userObj)
   }
@@ -62,7 +64,9 @@ function App() {
         <Admin user={user}/>
       ): page === 'post' ? (
         <Post />
-      ): (
+      ): page === 'updatePost' ? (
+        <Update post={posts.find(post => post.id === parseInt(postId))} />
+      ) : (
         (loading && <p>Loading...</p>),
         <>
           <User user={user}/>
