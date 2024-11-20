@@ -121,6 +121,7 @@ export default function Posts({posts, reload, user}) {
           <p>Comments</p>
           {post.comments.map(comment=>
             <>
+              <p>{comment.author.username}:</p>
               <p>{comment.content}</p>
               {(comment.updateAt)? (
                 <p>Update at {Date(comment.updateAt)}</p>
