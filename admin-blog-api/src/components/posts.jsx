@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 export default function Posts({posts, reload, user}) {
-  const comment = useRef(null);
+  const commentContent = useRef([]);
   const navigate = useNavigate();
   const [inputStates, setInputStates] = useState({});
   const commentRefs = useRef([]);
@@ -25,16 +25,17 @@ export default function Posts({posts, reload, user}) {
         throw new Error("server error");
       }
       return response.json()});
-      comment.current.value = ''
+      commentRefs.current[commentId].value = ''
       setInputStates((prevStates) => ({ ...prevStates, [commentId]: false }))
       reload(true)
       navigate('/')
   }
   const leaveComment = async (postId) =>{
+    console.log(commentContent.current[postId].value)
     fetch(`http://localhost:3000/comment/${postId}`, {
       mode: "cors",
       method: "POST", body: JSON.stringify({
-        content: comment.current.value
+        content: commentContent.current[postId].value
       }),
       headers: { "Content-Type": "application/json",
       "Authorization": localStorage.getItem("Authorization")},
@@ -44,7 +45,7 @@ export default function Posts({posts, reload, user}) {
         throw new Error("server error");
       }
       return response.json()});
-      comment.current.value = ''
+      commentContent.current[postId].value = ''
       reload(true)
       navigate('/')
   }
@@ -122,7 +123,7 @@ export default function Posts({posts, reload, user}) {
           )}
           <p>Comments</p>
           {post.comments.map(comment=>
-            <>
+            <div key={comment.id}>
               <p>{comment.author.username}:</p>
               <p>{comment.content}</p>
               {(comment.updateAt)? (
@@ -130,11 +131,7 @@ export default function Posts({posts, reload, user}) {
               ):(
                 <p>Created at {Date(comment.createdAt)}</p>
               )}
-              {(comment.authorId === user.id || user.admin)?(
-                <button onClick={()=>removeComment(comment.id)}>Delete</button>
-              ):(
-                <></>
-              )}
+             {user ? (<>
               {(comment.authorId === user.id && !inputStates[comment.id])?(
                 <button onClick={()=>commentInput(comment.id)}>Update</button>
               ):(comment.authorId === user.id && inputStates[comment.id])?(
@@ -144,10 +141,17 @@ export default function Posts({posts, reload, user}) {
                 </>
               ):(
                 <></>
+              )} 
+              {(comment.authorId === user.id || user.admin)?(
+                <button onClick={()=>removeComment(comment.id)}>Delete</button>
+              ):(
+                <></>
               )}
-            </>
+            </>): (<></>)}
+            </div>
           )}
-          <label>Leave a comment: <input ref={comment} type="text"></input><button onClick={()=>leaveComment(post.id)}>Submit Comment</button></label>
+          <br></br>
+          <label>Leave a comment: <input ref={el =>commentContent.current[post.id] = el} type="text"></input><button onClick={()=>leaveComment(post.id)}>Submit Comment</button></label>
           </div>
          )
       ) : (

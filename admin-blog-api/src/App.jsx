@@ -21,7 +21,6 @@ function App() {
   const [reload, setReload] = useState(false)
 
   console.log(posts)
-  console.log(postId)
   function assignUser(userObj) {
     setUser(userObj)
   }
