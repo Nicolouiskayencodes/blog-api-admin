@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom"
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 export default function Header({setUser, user}) {
+  const navigate = useNavigate();
   function logout() {
     setUser(null);
     localStorage.removeItem("Authorization")
+    navigate('/')
   }
 
   return(<header>

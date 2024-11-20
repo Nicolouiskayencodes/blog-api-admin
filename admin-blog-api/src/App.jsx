@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import './App.css'
 import Header from './components/header.jsx'
 import Register from './components/register.jsx'
@@ -11,15 +11,20 @@ import Post from './components/postForm.jsx'
 
 
 function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const {page} = useParams()
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState(null);
   const [user, setUser] = useState(null);
+  const [reload, setReload] = useState(false)
+
   console.log(posts)
   function assignUser(userObj) {
     setUser(userObj)
   }
   useEffect(()=>{
+    setReload(false)
     const token = localStorage.getItem("Authorization");
     console.log({"Authorization": token})
     fetch('http://localhost:3000/protected', {mode: 'cors', method:"GET", headers:{
@@ -33,7 +38,10 @@ function App() {
       }
       return response.json()})
     .then(response=>setUser(response))
-    fetch('http://localhost:3000/posts', {mode: 'cors', method: "GET"})
+    fetch('http://localhost:3000/unpublished', {mode: 'cors', method: "GET", headers: {
+      "Content-Type": "application/json",
+      "Authorization": token,
+    }})
     .then(response=>{ 
       if (response.status >= 400) {
         throw new Error("server error");
@@ -42,7 +50,7 @@ function App() {
     .then(response=>setPosts(response))
     .catch(error=>console.log(error))
     .finally(()=> setLoading(false))
-  }, [])
+  }, [navigate, location.pathname, location.search, reload])
   return (
     <>
       <Header setUser={assignUser} user={user}/>
@@ -58,7 +66,7 @@ function App() {
         (loading && <p>Loading...</p>),
         <>
           <User user={user}/>
-          <Posts posts={posts}/>
+          <Posts posts={posts} reload={setReload} user={user}/>
         </>
       )}
     </>
