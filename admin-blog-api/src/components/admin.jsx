@@ -30,9 +30,10 @@ export default function Admin({setUser, user}) {
   return(<div>
     {incorrect && <p>The password was incorrect</p>}
     <form onSubmit={handleSubmit}>
-      <label>Admin Password: 
+      <label>Admin Password: <br/>
         <input ref={adminPassword} name="password" type="password"></input>
       </label>
+      <br/>
       <button type="submit">Submit</button>
     </form>
   </div>)

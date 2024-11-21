@@ -25,12 +25,14 @@ export default function Post() {
   }
   return(<div>
     <form onSubmit={handleSubmit}>
-      <label>Post Title: 
+      <label>Post Title: <br/>
         <input ref={title} name="username" type="text"></input>
       </label>
-      <label>Content: 
+      <br/>
+      <label>Content: <br/>
         <textarea ref={content} name="password" type="password"></textarea>
       </label>
+      <br/>
       <button type="submit">Submit</button>
     </form>
   </div>)

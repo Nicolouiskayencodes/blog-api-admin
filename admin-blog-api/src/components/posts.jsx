@@ -96,10 +96,10 @@ export default function Posts({posts, reload, user}) {
       navigate('/')
   }
   return(
-    <div>
-      {(posts && posts.length > 0)?
+    <div className="content">
+      {(posts && posts.length > 0 && user)?
       (posts.map(post=>
-        <div key={post.id}>
+        <div key={post.id} className="post" >
           <h2>{post.title}</h2>
           <p>{post.content}</p>
           {(post.updateAt)? (
@@ -121,9 +121,9 @@ export default function Posts({posts, reload, user}) {
               <button onClick={()=>remove(post.id)} >Delete</button>
             </>
           )}
-          <p>Comments</p>
+          <h3>Comments</h3>
           {post.comments.map(comment=>
-            <div key={comment.id}>
+            <div key={comment.id} className="comment">
               <p>{comment.author.username}:</p>
               <p>{comment.content}</p>
               {(comment.updateAt)? (
@@ -152,10 +152,12 @@ export default function Posts({posts, reload, user}) {
           )}
           <br></br>
           <label>Leave a comment: <input ref={el =>commentContent.current[post.id] = el} type="text"></input><button onClick={()=>leaveComment(post.id)}>Submit Comment</button></label>
+          <hr></hr>
           </div>
+          
          )
       ) : (
-        <p>No posts yet</p>
+        <p>Sign into an admin account to view posts</p>
       )
       }
      

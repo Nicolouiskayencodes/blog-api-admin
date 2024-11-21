@@ -11,12 +11,12 @@ export default function Header({setUser, user}) {
   }
 
   return(<header>
-    <h1>Nico&#39;s Blog</h1>
+    <h1>Nico&#39;s Blog (Admin Edition)</h1>
     <nav>
       <Link to={'/'}>Home</Link>
       { (!user) ? (
         <>
-          <Link to={'/register'}>Register</Link>
+          <Link to={'/register'}>Register</Link>  
           <Link to={'/login'}>Login</Link>
         </>
         

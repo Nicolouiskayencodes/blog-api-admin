@@ -34,15 +34,18 @@ export default function Register() {
   return(<div>
     {mismatch && <p>Your passwords did not match</p>}
     <form onSubmit={handleSubmit}>
-      <label>Username: 
+      <label>Username: <br/>
         <input ref={username} name="username" type="text"></input>
       </label>
-      <label>Password: 
+      <br/>
+      <label>Password: <br/>
         <input ref={password} name="password" type="password"></input>
       </label>
-      <label>Confirm Password: 
+      <br/>
+      <label>Confirm Password: <br/>
         <input ref={passConfirm} name="passwordConfirm" type="password"></input>
       </label>
+      <br/>
       <button type="submit">Submit</button>
     </form>
   </div>)

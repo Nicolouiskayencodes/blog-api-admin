@@ -26,12 +26,14 @@ export default function Update({post}) {
   }
   return(<div>
     <form onSubmit={handleSubmit}>
-      <label>Post Title: 
+      <label>Post Title: <br/>
         <input ref={title} name="title" defaultValue={post.title} type="text"></input>
       </label>
-      <label>Content: 
+      <br/>
+      <label>Content: <br/>
         <textarea ref={content} name="password" defaultValue={post.content} type="password"></textarea>
       </label>
+      <br/>
       <button type="submit">Submit</button>
     </form>
   </div>)

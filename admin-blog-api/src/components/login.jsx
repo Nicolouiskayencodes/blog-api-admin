@@ -28,12 +28,14 @@ export default function Login({setUser}) {
   }
   return(<div>
     <form onSubmit={handleSubmit}>
-      <label>Username: 
+      <label>Username: <br/>
         <input ref={username} name="username" type="text"></input>
       </label>
-      <label>Password: 
+      <br/>
+      <label>Password: <br/>
         <input ref={password} name="password" type="password"></input>
       </label>
+      <br/>
       <button type="submit">Submit</button>
     </form>
   </div>)

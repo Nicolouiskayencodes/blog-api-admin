@@ -25,7 +25,8 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  flex-direction: column;
+  align-content: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -65,4 +66,73 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+header {
+  box-sizing: border-box;
+  display: flex;
+  align-content:center ;
+  justify-content: space-between;
+  padding-bottom: 1em;
+  margin-top: 0;
+  background-color: rebeccapurple;
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+nav {
+  display: flex;
+  gap: 10px;
+}
+header h1 {
+  margin-bottom: 0;
+  color:rgb(103, 177, 180);
+}
+nav a {
+  margin-top: auto;
+  margin-bottom: 0;
+  color:rgb(103, 177, 180);
+  padding: 0;
+}
+nav button {
+  margin-top: auto;
+  margin-bottom: 2.5px;
+  color:rgb(103, 177, 180);
+  border: none;
+  background-color: inherit;
+  padding: 0;
+}
+.content {
+  max-width: 80%;
+}
+.post {
+  text-align: left;
+  padding: 20px;
+  border: 2px solid gray;
+  background-color: darkcyan;
+}
+.post>h2 {
+  font-size: 36px;
+}
+.post>p:nth-child(2) {
+  font-size: 30px;
+}
+.post button {
+  margin: 3px;
+}
+.comment {
+  padding: 5px;
+}
+.post>.comment:nth-child(even) {
+  background-color:lightslategrey;
+  color: black;
+}
+.post>.comment:nth-child(odd) {
+  background-color: lightsteelblue;
+  color: black;
+}
+textarea {
+  width: 500px;
+  height: 500px;
+  font-style: inherit;
 }
