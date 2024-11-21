@@ -8,7 +8,7 @@ export default function Login({setUser}) {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const responseObj = await fetch("http://localhost:3000/login", {
+    const responseObj = await fetch("https://blog-api-backend-0ye2.onrender.com/login", {
       mode: "cors",
       method: "POST", body: JSON.stringify({
         username: username.current.value,

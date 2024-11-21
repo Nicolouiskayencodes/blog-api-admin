@@ -8,7 +8,7 @@ export default function Update({post}) {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    fetch(`http://localhost:3000/post/${post.id}`, {
+    fetch(`https://blog-api-backend-0ye2.onrender.com/post/${post.id}`, {
       mode: "cors",
       method: "PUT", body: JSON.stringify({
         title: title.current.value,

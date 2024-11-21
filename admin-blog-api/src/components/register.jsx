@@ -16,7 +16,7 @@ export default function Register() {
     if (password.current.value === passConfirm.current.value) {
       setMismatch(false)
     }
-    fetch("http://localhost:3000/register", {
+    fetch("https://blog-api-backend-0ye2.onrender.com/register", {
       mode: "cors",
       method: "POST", body: JSON.stringify({
         username: username.current.value,

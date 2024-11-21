@@ -8,7 +8,7 @@ export default function Admin({setUser, user}) {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-     await fetch("http://localhost:3000/admin", {
+     await fetch("https://blog-api-backend-0ye2.onrender.com/admin", {
       mode: "cors",
       method: "PUT", body: JSON.stringify({
         adminPassword: adminPassword.current.value,

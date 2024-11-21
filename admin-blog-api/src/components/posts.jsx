@@ -12,7 +12,7 @@ export default function Posts({posts, reload, user}) {
   };
   const updateComment = async (commentId) => {
     console.log(commentRefs.current[commentId])
-    fetch(`http://localhost:3000/comment/${commentId}`, {
+    fetch(`https://blog-api-backend-0ye2.onrender.com/comment/${commentId}`, {
       mode: "cors",
       method: "PUT", body: JSON.stringify({
         content: commentRefs.current[commentId].value
@@ -32,7 +32,7 @@ export default function Posts({posts, reload, user}) {
   }
   const leaveComment = async (postId) =>{
     console.log(commentContent.current[postId].value)
-    fetch(`http://localhost:3000/comment/${postId}`, {
+    fetch(`https://blog-api-backend-0ye2.onrender.com/comment/${postId}`, {
       mode: "cors",
       method: "POST", body: JSON.stringify({
         content: commentContent.current[postId].value
@@ -50,7 +50,7 @@ export default function Posts({posts, reload, user}) {
       navigate('/')
   }
   const removeComment = async (commentId) => {
-    fetch(`http://localhost:3000/comment/${commentId}`, {
+    fetch(`https://blog-api-backend-0ye2.onrender.com/comment/${commentId}`, {
       mode: "cors",
       method: "DELETE",
       headers: { "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function Posts({posts, reload, user}) {
   }
   
   const publish = async (postId) => {
-    fetch(`http://localhost:3000/publish/${postId}`, {
+    fetch(`https://blog-api-backend-0ye2.onrender.com/publish/${postId}`, {
       mode: "cors",
       method: "PUT",
       headers: { "Content-Type": "application/json",
@@ -81,7 +81,7 @@ export default function Posts({posts, reload, user}) {
       navigate('/')
   }
   const remove = async (postId) => {
-    fetch(`http://localhost:3000/post/${postId}`, {
+    fetch(`https://blog-api-backend-0ye2.onrender.com/post/${postId}`, {
       mode: "cors",
       method: "DELETE",
       headers: { "Content-Type": "application/json",

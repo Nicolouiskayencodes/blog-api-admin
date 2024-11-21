@@ -7,7 +7,7 @@ export default function Post() {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    fetch("http://localhost:3000/post", {
+    fetch("https://blog-api-backend-0ye2.onrender.com/post", {
       mode: "cors",
       method: "POST", body: JSON.stringify({
         title: title.current.value,

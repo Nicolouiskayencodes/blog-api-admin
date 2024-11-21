@@ -28,7 +28,7 @@ function App() {
     setReload(false)
     const token = localStorage.getItem("Authorization");
     console.log({"Authorization": token})
-    fetch('http://localhost:3000/protected', {mode: 'cors', method:"GET", headers:{
+    fetch('https://blog-api-backend-0ye2.onrender.com/protected', {mode: 'cors', method:"GET", headers:{
       "Authorization": token,
       "Content-Type": "application/json"
     }})
@@ -39,7 +39,7 @@ function App() {
       }
       return response.json()})
     .then(response=>setUser(response))
-    fetch('http://localhost:3000/unpublished', {mode: 'cors', method: "GET", headers: {
+    fetch('https://blog-api-backend-0ye2.onrender.com/unpublished', {mode: 'cors', method: "GET", headers: {
       "Content-Type": "application/json",
       "Authorization": token,
     }})
@@ -60,7 +60,7 @@ function App() {
       ) : page === 'login' ? (
         <Login setUser={assignUser}/>
       ) : page === 'admin' ? (
-        <Admin user={user}/>
+        <Admin setUser={assignUser} user={user}/>
       ): page === 'post' ? (
         <Post />
       ): page === 'updatePost' ? (
