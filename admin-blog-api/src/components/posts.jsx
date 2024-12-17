@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 export default function Posts({posts, reload, user}) {
   const commentContent = useRef([]);
   const navigate = useNavigate();
+  //I could have saved a lot of headache setting up input states by just feeding comments to a child element
   const [inputStates, setInputStates] = useState({});
   const commentRefs = useRef([]);
 
